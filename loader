@@ -9,17 +9,19 @@ local GameIDs = {
 }
 
 local function Execute(IDs)
-    return loadstring(game:HttpGet(IDs[tostring(GameID)]))()
+    local scriptUrl = IDs[tostring(GameID)]
+    if scriptUrl then
+        return loadstring(game:HttpGet(scriptUrl))()
+    end
 end
 
 if not script_key then
-    return Player:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
+    Player:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
+    return
 end
 
 if GameIDs[tostring(GameID)] then
     Execute(GameIDs)
-end
-
-if not GameIDs then
- return Player:Kick("Tyrant | Game currently unsupported check Script-Info Channel for supported games.")
+else
+    Player:Kick("Tyrant | Game currently unsupported. Check the Script-Info Channel for supported games.")
 end
