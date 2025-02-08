@@ -18,6 +18,8 @@ end
 
 if GameIDs[tostring(GameID)] then
     Execute(GameIDs)
-        else
-            return Player:Kick("Tyrant | Game currently unsupported check Script-Info Channel for supported games.")
+end
+
+if not GameIDs then
+ return Player:Kick("Tyrant | Game currently unsupported check Script-Info Channel for supported games.")
 end
