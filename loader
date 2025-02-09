@@ -1,35 +1,3 @@
-local supportedExecutors = {
-    "AWP",
-    "Wave",
-    "Synapse Z",
-    "Swift",
-    "MacSploit",
-    "Vega X",
-    "Nihon",
-    "Fluxus",
-    "Codex",
-    "Argon",
-	"Delta",
-    "Cryptic",
-	"Nezur",
-	"Sonarr"
-}
-
-local executorName = getexecutorname()
-
-local isSupported = false
-for _, name in ipairs(supportedExecutors) do
-    if string.match(executorName, name) then
-        isSupported = true
-        break
-    end
-end
-
-if not isSupported then
-    local Player = game:GetService("Players").LocalPlayer
-    Player:Kick("Tyrant | Executor not supported, Check #executors channel for a supported executor.")
-end
-
 local GameID = game.GameId
 local Player = game:GetService("Players").LocalPlayer
 
