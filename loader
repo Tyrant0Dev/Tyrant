@@ -12,7 +12,7 @@ local supportedExecutors = {
 	"Delta",
     "Cryptic",
 	"Nezur",
-	"Sonar"
+	"Sonarr"
 }
 
 local executorName = getexecutorname()
