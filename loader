@@ -1,27 +1,58 @@
+local supportedExecutors = {
+    "AWP",
+    "Wave",
+    "Synapse Z",
+    "Swift",
+    "MacSploit",
+    "Vega X",
+    "Nihon",
+    "Fluxus",
+    "Codex",
+    "Argon",
+	"Delta",
+    "Cryptic",
+	"Nezur",
+	"Sonar"
+}
+
+local executorName = getexecutorname()
+
+local isSupported = false
+for _, name in ipairs(supportedExecutors) do
+    if string.match(executorName, name) then
+        isSupported = true
+        break
+    end
+end
+
+if not isSupported then
+    local Player = game:GetService("Players").LocalPlayer
+    Player:Kick("Tyrant | Executor not supported, Check #executors channel for a supported executor.")
+end
+
 local GameID = game.GameId
 local Player = game:GetService("Players").LocalPlayer
 
 local GameIDs = {
-    ["3150475059"] = "https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua", -- FF2
-    ["115797356"] = "https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua",
-    ["4931927012"] = "https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua", -- Basketball Legends
-    ["184199275"] = "https://api.luarmor.net/files/v3/loaders/484a9bcf33fd9bf8d6e892e849e021a1.lua", -- UF
+    [3150475059] = "https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua", -- FF2
+    [115797356] = "https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua",
+    [4931927012] = "https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua", -- Basketball Legends
+    [184199275] = "https://api.luarmor.net/files/v3/loaders/484a9bcf33fd9bf8d6e892e849e021a1.lua", -- UF
 }
-
-local function Execute(IDs)
-    local scriptUrl = IDs[tostring(GameID)]
-    if scriptUrl then
-        return loadstring(game:HttpGet(scriptUrl))()
-    end
-end
 
 if not script_key then
     Player:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
     return
 end
 
-if GameIDs[tostring(GameID)] then
-    Execute(GameIDs)
+if GameID == 3150475059 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua"))() --FF2
+elseif GameID == 115797356 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua"))()
+elseif GameID == 4931927012 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua"))() -- Basketball Legends
+elseif GameID == 184199275 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/484a9bcf33fd9bf8d6e892e849e021a1.lua"))() -- UF
 else
     Player:Kick("Tyrant | Game currently unsupported. Check the Script-Info Channel for supported games.")
 end
