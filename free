@@ -1,1 +1,23 @@
+local GameID = game.GameId
+local Player = game:GetService("Players").LocalPlayer
 
+if not script_key then
+    Player:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
+    return
+end
+
+if GameID == 3150475059 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/c09afe615ca3b99cf0bf5204a8babedb.lua"))() --FF2
+elseif GameID == 115797356 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/c09afe615ca3b99cf0bf5204a8babedb.lua"))()
+elseif GameID == 4931927012 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/dcddaca948ce72ba6e50443c1f68b47d.lua"))() -- Basketball Legends
+elseif GameID == 184199275 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/740c4499996f33068e4eaccd8eb005a8.lua"))() -- UF
+elseif GameID == 6505338302 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/8a879974a96c8c002df9be7d4f072db5.lua"))() -- Football Legends
+elseif GameID == 1008451066 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/59d2ba1e815c4e31d1bf50242756698a.lua"))() -- Da Hood
+else
+    Player:Kick("Tyrant | Game currently unsupported. Check the Script-Info Channel for supported games.")
+end
