@@ -7,9 +7,9 @@ if not script_key then
 end
 
 if GameID == 3150475059 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/c09afe615ca3b99cf0bf5204a8babedb.lua"))() --FF2
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fbc2575adb9f0ac228d8971bcbfa4f8b.lua"))() --FF2
 elseif GameID == 115797356 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/c09afe615ca3b99cf0bf5204a8babedb.lua"))()
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fbc2575adb9f0ac228d8971bcbfa4f8b.lua"))()
 elseif GameID == 4931927012 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/dcddaca948ce72ba6e50443c1f68b47d.lua"))() -- Basketball Legends
 elseif GameID == 184199275 then
