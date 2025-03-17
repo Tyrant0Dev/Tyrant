@@ -12,12 +12,6 @@ elseif GameID == 115797356 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fbc2575adb9f0ac228d8971bcbfa4f8b.lua"))()
 elseif GameID == 4931927012 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/dcddaca948ce72ba6e50443c1f68b47d.lua"))() -- Basketball Legends
-elseif GameID == 184199275 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/740c4499996f33068e4eaccd8eb005a8.lua"))() -- UF
-elseif GameID == 6505338302 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/8a879974a96c8c002df9be7d4f072db5.lua"))() -- Football Legends
-elseif GameID == 1008451066 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/59d2ba1e815c4e31d1bf50242756698a.lua"))() -- Da Hood
 else
     Player:Kick("Tyrant | Game currently unsupported. Check the Script-Info Channel for supported games.")
 end
