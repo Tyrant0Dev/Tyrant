@@ -1,11 +1,6 @@
 local GameID = game.GameId
 local Player = game:GetService("Players").LocalPlayer
 
-if not script_key then
-    Player:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you have an key.")
-    return
-end
-
 if GameID == 3150475059 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/fbc2575adb9f0ac228d8971bcbfa4f8b.lua"))() --FF2
 elseif GameID == 115797356 then
