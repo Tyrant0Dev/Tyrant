@@ -18,6 +18,8 @@ elseif GameID == 6505338302 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/9d126d22d6a499a3aff7ee30739f809b.lua"))() -- Football Legends
 elseif GameID == 1008451066 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e983996f1ea97b7a2e90ad980391b4cc.lua"))() -- Da Hood
+elseif GameID == 5379950946 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0bb9561831265b61ea70c252a6922db8.lua"))() -- Basketball Stars 3
 else
     Player:Kick("Tyrant | Game currently unsupported. Check the Script-Info Channel for supported games.")
 end
