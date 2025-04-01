@@ -20,6 +20,8 @@ elseif GameID == 1008451066 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e983996f1ea97b7a2e90ad980391b4cc.lua"))() -- Da Hood
 elseif GameID == 5379950946 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0bb9561831265b61ea70c252a6922db8.lua"))() -- Basketball Stars 3
+elseif GameID == 5379950946 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0b95dcc32ec7f86e0e326d4c8f25ba6c.lua"))() -- Murders Vs Sherrifs Duels
 else
     Player:Kick("Tyrant | Game currently unsupported. Check the Script-Info Channel for supported games.")
 end
