@@ -23,5 +23,5 @@ elseif GameID == 5379950946 then
 elseif GameID == 4348829796 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0b95dcc32ec7f86e0e326d4c8f25ba6c.lua"))() -- Murders Vs Sherrifs Duels
 else
-    Player:Kick("Tyrant | Game currently unsupported. Check the Script-Info Channel for supported games.")
+    Player:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
 end
