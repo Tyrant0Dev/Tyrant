@@ -22,6 +22,8 @@ elseif GameID == 5379950946 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0bb9561831265b61ea70c252a6922db8.lua"))() -- Basketball Stars 3
 elseif GameID == 4348829796 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0b95dcc32ec7f86e0e326d4c8f25ba6c.lua"))() -- Murders Vs Sherrifs Duels
+elseif GameID == 6931042565 then
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b0bce84f55e1280b9332682da0514879.lua"))() -- Volleyball Legends
 else
     Player:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
 end
