@@ -26,6 +26,8 @@ elseif GameID == 6931042565 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b0bce84f55e1280b9332682da0514879.lua"))() -- Volleyball Legends
 elseif GameID == 6504986360 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/273b3bdcfd8c0b8fbc4c60c54e613005.lua"))() -- Bubble Gum
+elseif GameID == 6035872082 then
+   loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/f328279830f49e1d44a30afdfc24e16e.lua"))() -- Rivals
 else
     Player:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
 end
