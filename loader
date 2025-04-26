@@ -13,7 +13,7 @@ if GameID == 3150475059 then
 elseif GameID == 115797356 then
    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e23382498d4926c5a227c5bd976ba725.lua"))()
 elseif GameID == 4931927012 then
-    task.wait(3) loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua"))() -- Basketball Legends
+    task.wait(5) loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua"))() -- Basketball Legends
 elseif GameID == 184199275 then
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/263db55cac24e2b330515b23fe7ce00c.lua"))() -- UF
 elseif GameID == 6505338302 then
