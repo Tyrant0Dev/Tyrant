@@ -1,7 +1,7 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Tyrant0Dev/Tyrant/refs/heads/main/intro"))()
 
 task.spawn(function()
-    task.wait(5)
+    task.wait(3.5)
 
     local GameID = game.GameId
     local Player = game:GetService("Players").LocalPlayer
