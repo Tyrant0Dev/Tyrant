@@ -1,36 +1,39 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Tyrant0Dev/Tyrant/refs/heads/main/intro"))()
-task.wait(5) 
 
-local GameID = game.GameId
-local Player = game:GetService("Players").LocalPlayer
+task.spawn(function()
+    task.wait(5)
 
-if not script_key then
-    Player:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
-    return
-end
+    local GameID = game.GameId
+    local Player = game:GetService("Players").LocalPlayer
 
-if GameID == 3150475059 then
-  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e23382498d4926c5a227c5bd976ba725.lua"))() --FF2
-elseif GameID == 115797356 then
-   loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e23382498d4926c5a227c5bd976ba725.lua"))()
-elseif GameID == 4931927012 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua"))() -- Basketball Legends
-elseif GameID == 184199275 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/263db55cac24e2b330515b23fe7ce00c.lua"))() -- UF
-elseif GameID == 6505338302 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/9d126d22d6a499a3aff7ee30739f809b.lua"))() -- Football Legends
-elseif GameID == 1008451066 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e983996f1ea97b7a2e90ad980391b4cc.lua"))() -- Da Hood
-elseif GameID == 5379950946 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0bb9561831265b61ea70c252a6922db8.lua"))() -- Basketball Stars 3
-elseif GameID == 4348829796 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0b95dcc32ec7f86e0e326d4c8f25ba6c.lua"))() -- Murders Vs Sherrifs Duels
-elseif GameID == 6931042565 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b0bce84f55e1280b9332682da0514879.lua"))() -- Volleyball Legends
-elseif GameID == 6504986360 then
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/273b3bdcfd8c0b8fbc4c60c54e613005.lua"))() -- Bubble Gum
-elseif GameID == 6035872082 then
-   loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/f328279830f49e1d44a30afdfc24e16e.lua"))() -- Rivals
-else
-    Player:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
-end
+    if not script_key then
+        Player:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
+        return
+    end
+
+    if GameID == 3150475059 then
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e23382498d4926c5a227c5bd976ba725.lua"))() -- FF2
+    elseif GameID == 115797356 then
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e23382498d4926c5a227c5bd976ba725.lua"))()
+    elseif GameID == 4931927012 then
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua"))() -- Basketball Legends
+    elseif GameID == 184199275 then
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/263db55cac24e2b330515b23fe7ce00c.lua"))() -- UF
+    elseif GameID == 6505338302 then
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/9d126d22d6a499a3aff7ee30739f809b.lua"))() -- Football Legends
+    elseif GameID == 1008451066 then
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e983996f1ea97b7a2e90ad980391b4cc.lua"))() -- Da Hood
+    elseif GameID == 5379950946 then
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0bb9561831265b61ea70c252a6922db8.lua"))() -- Basketball Stars 3
+    elseif GameID == 4348829796 then
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/0b95dcc32ec7f86e0e326d4c8f25ba6c.lua"))() -- Murders Vs Sheriffs Duels
+    elseif GameID == 6931042565 then
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b0bce84f55e1280b9332682da0514879.lua"))() -- Volleyball Legends
+    elseif GameID == 6504986360 then
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/273b3bdcfd8c0b8fbc4c60c54e613005.lua"))() -- Bubble Gum
+    elseif GameID == 6035872082 then
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/f328279830f49e1d44a30afdfc24e16e.lua"))() -- Rivals
+    else
+        Player:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
+    end
+end)
