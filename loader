@@ -1,13 +1,11 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Tyrant0Dev/Tyrant/refs/heads/main/intro"))()
+
 local GameID = game.GameId
 local Player = game:GetService("Players").LocalPlayer
 
 if not script_key then
     Player:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
     return
-end
-
-local function StartIntro()
-  loadstring(game:HttpGet("https://raw.githubusercontent.com/Tyrant0Dev/Tyrant/refs/heads/main/intro"))()
 end
 
 if GameID == 3150475059 then
@@ -35,5 +33,3 @@ elseif GameID == 6035872082 then
 else
     Player:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
 end
-
-StartIntro()
