@@ -1,7 +1,3 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Tyrant0Dev/Tyrant/refs/heads/main/intro"))()
-
-task.spawn(function()
-    task.wait(3.5)
 
     local GameID = game.GameId
     local Player = game:GetService("Players").LocalPlayer
@@ -24,4 +20,3 @@ task.spawn(function()
     else
         Player:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
     end
-end)
