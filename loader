@@ -14,15 +14,15 @@ if not script_key then
 end
 
 if GameID == 3150475059 then
-	if hookfunction and hookmetamethod then
-		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua"))()
-	else
-		loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b5eb5ab4e62fa3229a5dfb089cf220af.lua"))()
-	end -- FF2
+     if hookfunction and hookmetamethod then
+	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua"))()
+     else
+	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b5eb5ab4e62fa3229a5dfb089cf220af.lua"))()
+     end -- FF2
 elseif GameID == 4931927012 then
-	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua"))() -- Basketball Legends
+     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua"))() -- Basketball Legends
 elseif GameID == 6931042565 then
-	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b0bce84f55e1280b9332682da0514879.lua"))() -- Volleyball Legends
+     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b0bce84f55e1280b9332682da0514879.lua"))() -- Volleyball Legends
 else
-	Player:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
+     Player:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
 end
