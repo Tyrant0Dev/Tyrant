@@ -4,7 +4,7 @@ local Player = game:GetService("Players").LocalPlayer
 local XenoSupportedGame = GameID == 3150475059 or GameID == 4931927012
 
 if (not hookfunction or not hookmetamethod) and not XenoSupportedGame then
-	Player:Kick('Your executor is not supported')
+    Player:Kick('Your executor is not supported')
     return
 end
 
