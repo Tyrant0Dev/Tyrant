@@ -23,6 +23,8 @@ elseif GameID == 4931927012 then
      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua"))() -- Basketball Legends
 elseif GameID == 6931042565 then
      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b0bce84f55e1280b9332682da0514879.lua"))() -- Volleyball Legends
+elseif GameID == 3645347821 then
+     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/44522f2745666ad4fc2311604698c8e4.lua"))() -- BIG Paintball 2
 else
      Player:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
 end
