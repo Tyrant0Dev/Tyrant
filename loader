@@ -1,30 +1,27 @@
-local GameID = game.GameId
-local Player = game:GetService("Players").LocalPlayer
-
-local XenoSupportedGame = GameID == 3150475059 or GameID == 4931927012
+local XenoSupportedGame = game.GameId == 3150475059 or game.GameId == 4931927012
 
 if (not hookfunction or not hookmetamethod) and not XenoSupportedGame then
-    Player:Kick('Your executor is not supported')
+    game:GetService("Players").LocalPlayer:Kick('Your executor is not supported')
     return
 end
 
 if not script_key then
-	Player:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
+	game:GetService("Players").LocalPlayer:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
 	return
 end
 
-if GameID == 3150475059 then
+if game.GameId == 3150475059 then
      if hookfunction and hookmetamethod then
 	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua"))()
      else
 	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b5eb5ab4e62fa3229a5dfb089cf220af.lua"))()
      end -- FF2
-elseif GameID == 4931927012 then
+elseif game.GameId == 4931927012 then
      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua"))() -- Basketball Legends
-elseif GameID == 6931042565 then
+elseif game.GameId == 6931042565 then
      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b0bce84f55e1280b9332682da0514879.lua"))() -- Volleyball Legends
-elseif GameID == 3645347821 then
+elseif game.GameId == 3645347821 then
      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/44522f2745666ad4fc2311604698c8e4.lua"))() -- BIG Paintball 2
 else
-     Player:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
+     game:GetService("Players").LocalPlayer:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
 end
