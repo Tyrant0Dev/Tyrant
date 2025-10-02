@@ -1,7 +1,7 @@
-local XenoSupportedGame = game.GameId == 3150475059 or game.GameId == 4931927012
+local XenoSupportedGame = game.GameId == 3150475059 or game.GameId == 4931927012 or game.GameId == 184199275
 
 if (not hookfunction or not hookmetamethod) and not XenoSupportedGame then
-    game:GetService("Players").LocalPlayer:Kick('Your executor is not supported')
+    game:GetService("Players").LocalPlayer:Kick('[TYRANT] Your executor is not supported for this game')
     return
 end
 
