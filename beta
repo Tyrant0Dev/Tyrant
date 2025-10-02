@@ -1,1 +1,17 @@
+local XenoSupportedGame = game.GameId == 3150475059 or game.GameId == 4931927012
 
+if (not hookfunction or not hookmetamethod) and not XenoSupportedGame then
+    game:GetService("Players").LocalPlayer:Kick('Your executor is not supported')
+    return
+end
+
+if not script_key then
+	game:GetService("Players").LocalPlayer:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
+	return
+end
+
+if game.GameId == 184199275 then
+      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/4ec69e34efb1785f3cf78011512be8e5.lua"))() -- Universe Football
+else
+     game:GetService("Players").LocalPlayer:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
+end
