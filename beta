@@ -14,6 +14,10 @@ if game.GameId == 184199275 then
       loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/4ec69e34efb1785f3cf78011512be8e5.lua"))() -- Universe Football
 elseif game.GameId == 8558141897 then
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b1083bada046474037b02281426d0b31.lua"))() -- Flag Football
+elseif game.GameId == 3150475059 then
+     if hookfunction and hookmetamethod then
+	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/47f3c2e8fcd63e43af5f04f5c09b6c47.lua"))()
+	end
 else
      game:GetService("Players").LocalPlayer:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
 end
