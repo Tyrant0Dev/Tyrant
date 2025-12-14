@@ -12,7 +12,7 @@ end
 
 if game.GameId == 3150475059 then
      if hookfunction and hookmetamethod then
-	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Tyrant0Dev/Tyrant/refs/heads/main/ff2chooser"))()
      else
 	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b5eb5ab4e62fa3229a5dfb089cf220af.lua"))()
      end -- FF2
