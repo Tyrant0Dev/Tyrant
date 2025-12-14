@@ -1,0 +1,358 @@
+print("LOADING")
+
+local CoreGui = game:GetService("CoreGui")
+local TweenService = game:GetService("TweenService")
+
+pcall(function()
+    if CoreGui:FindFirstChild("TyrantLoader") then
+        CoreGui.TyrantLoader:Destroy()
+    end
+end)
+
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "TyrantLoader"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = CoreGui
+
+local FadeObjects = {}
+
+local function RegisterFade(obj)
+	table.insert(FadeObjects, obj)
+end
+
+local function SetFade(value)
+	for _, obj in ipairs(FadeObjects) do
+		if obj:IsA("Frame") or obj:IsA("TextButton") then
+			obj.BackgroundTransparency = value
+		elseif obj:IsA("TextLabel") then
+			obj.TextTransparency = value
+		elseif obj:IsA("UIStroke") then
+			obj.Transparency = value
+		end
+	end
+end
+
+local function TweenFade(value, time)
+	for _, obj in ipairs(FadeObjects) do
+		local props = {}
+		if obj:IsA("Frame") or obj:IsA("TextButton") then
+			props.BackgroundTransparency = value
+		elseif obj:IsA("TextLabel") then
+			props.TextTransparency = value
+		elseif obj:IsA("UIStroke") then
+			props.Transparency = value
+		end
+		TweenService:Create(
+			obj,
+			TweenInfo.new(time, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+			props
+		):Play()
+	end
+end
+
+local loaderyranthub = Instance.new("Frame")
+loaderyranthub.BackgroundTransparency = 1
+loaderyranthub.Name = "Loaderyranthub"
+loaderyranthub.BackgroundColor3 = Color3.fromRGB(8, 9, 14)
+loaderyranthub.BorderSizePixel = 0
+loaderyranthub.AnchorPoint = Vector2.new(0.5, 0.5) 
+loaderyranthub.Position = UDim2.fromScale(0.5, 0.5) 
+loaderyranthub.Size = UDim2.fromOffset(505, 232)
+loaderyranthub.Parent = ScreenGui
+RegisterFade(loaderyranthub)
+
+local uICorner = Instance.new("UICorner")
+uICorner.Name = "UICorner"
+uICorner.CornerRadius = UDim.new(0, 12)
+uICorner.Parent = loaderyranthub
+
+local theinnerframo = Instance.new("Frame")
+theinnerframo.Name = "theinnerframo"
+theinnerframo.AnchorPoint = Vector2.new(0.5, 0.5)
+theinnerframo.BackgroundColor3 = Color3.fromRGB(14, 14, 24)
+theinnerframo.BorderColor3 = Color3.fromRGB(0, 0, 0)
+theinnerframo.BackgroundTransparency = 1
+theinnerframo.BorderSizePixel = 0
+theinnerframo.Position = UDim2.fromScale(0.5, 0.5)
+theinnerframo.Size = UDim2.new(1, -8, 1, -8)
+RegisterFade(theinnerframo)
+
+local uICorner1 = Instance.new("UICorner")
+uICorner1.Name = "UICorner"
+uICorner1.CornerRadius = UDim.new(0, 12)
+uICorner1.Parent = theinnerframo
+
+local titleee = Instance.new("TextLabel")
+titleee.Name = "titleee"
+titleee.FontFace = Font.new(
+  "rbxassetid://12187365364",
+  Enum.FontWeight.Bold,
+  Enum.FontStyle.Normal
+)
+titleee.Text = "Tyrant Hub"
+titleee.TextColor3 = Color3.fromRGB(116, 119, 150)
+titleee.TextSize = 21
+titleee.AnchorPoint = Vector2.new(0.5, 0)
+titleee.AutomaticSize = Enum.AutomaticSize.XY
+titleee.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+titleee.BackgroundTransparency = 1
+titleee.BorderColor3 = Color3.fromRGB(0, 0, 0)
+titleee.BorderSizePixel = 0
+titleee.Position = UDim2.new(0.5, 0, 0, 8)
+titleee.Size = UDim2.fromScale(0.5, 0)
+titleee.Parent = theinnerframo
+RegisterFade(titleee)
+
+local uIStroke = Instance.new("UIStroke")
+uIStroke.Name = "UIStroke"
+uIStroke.Color = Color3.fromRGB(29, 29, 39)
+uIStroke.Thickness = 1.2
+
+local uIGradient = Instance.new("UIGradient")
+uIGradient.Name = "UIGradient"
+uIGradient.Rotation = 90
+uIGradient.Parent = uIStroke
+
+
+uIStroke.Parent = theinnerframo
+RegisterFade(uIStroke)
+local selectversionblabla = Instance.new("TextLabel")
+selectversionblabla.Name = "selectversionblabla"
+selectversionblabla.FontFace = Font.new(
+  "rbxassetid://12187365364",
+  Enum.FontWeight.SemiBold,
+  Enum.FontStyle.Normal
+)
+selectversionblabla.Text = "Please select a version to load"
+selectversionblabla.TextColor3 = Color3.fromRGB(87, 87, 115)
+selectversionblabla.TextSize = 14
+selectversionblabla.AnchorPoint = Vector2.new(0.5, 1)
+selectversionblabla.AutomaticSize = Enum.AutomaticSize.XY
+selectversionblabla.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+selectversionblabla.BackgroundTransparency = 1
+selectversionblabla.BorderColor3 = Color3.fromRGB(0, 0, 0)
+selectversionblabla.BorderSizePixel = 0
+selectversionblabla.Position = UDim2.new(0.5, 0, 1, -9)
+selectversionblabla.Parent = theinnerframo
+RegisterFade(selectversionblabla)
+
+local magichappens = Instance.new("TextLabel")
+magichappens.Name = "magichappens"
+magichappens.FontFace = Font.new(
+  "rbxassetid://12187365364",
+  Enum.FontWeight.Bold,
+  Enum.FontStyle.Normal
+)
+magichappens.Text = "Where the magic happens!"
+magichappens.TextColor3 = Color3.fromRGB(255, 255, 255)
+magichappens.TextSize = 21
+magichappens.AnchorPoint = Vector2.new(0.5, 0.5)
+magichappens.AutomaticSize = Enum.AutomaticSize.XY
+magichappens.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+magichappens.BackgroundTransparency = 1
+magichappens.BorderColor3 = Color3.fromRGB(0, 0, 0)
+magichappens.BorderSizePixel = 0
+magichappens.Position = UDim2.new(0.5, 0, 0.114, 20)
+magichappens.Size = UDim2.fromScale(0.5, 0)
+RegisterFade(magichappens)
+
+local uIGradient1 = Instance.new("UIGradient")
+uIGradient1.Name = "UIGradient"
+uIGradient1.Color = ColorSequence.new({
+  ColorSequenceKeypoint.new(0, Color3.fromRGB(116, 119, 150)),
+  ColorSequenceKeypoint.new(0.311, Color3.fromRGB(116, 116, 155)),
+  ColorSequenceKeypoint.new(1, Color3.fromRGB(118, 50, 255)),
+})
+uIGradient1.Parent = magichappens
+uIGradient1.Offset = Vector2.new(-0.3, 0)
+
+local tween = TweenService:Create(
+	uIGradient1,
+	TweenInfo.new(
+		2.5, 
+		Enum.EasingStyle.Sine,
+		Enum.EasingDirection.InOut,
+		-1, 
+		true 
+	),
+	{ Offset = Vector2.new(0.3, 0) }
+)
+
+task.delay(0.05, function()
+	tween:Play()
+end)
+
+
+magichappens.Parent = theinnerframo
+
+local main = Instance.new("TextButton")
+main.Name = "Main"
+main.Text = ""
+main.AutoButtonColor = false
+main.Active = false
+main.BackgroundColor3 = Color3.fromRGB(19, 21, 33)
+main.BackgroundTransparency = 0.55
+main.BorderColor3 = Color3.fromRGB(0, 0, 0)
+main.BorderSizePixel = 0
+main.Position = UDim2.new(0.085, 0, 0, 94)
+main.Selectable = false
+main.Size = UDim2.new(0.412, -12, 0, 70)
+RegisterFade(main)
+
+local uICorner2 = Instance.new("UICorner")
+uICorner2.Name = "UICorner"
+uICorner2.Parent = main
+
+local uIStroke1 = Instance.new("UIStroke")
+uIStroke1.Name = "UIStroke"
+uIStroke1.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uIStroke1.Color = Color3.fromRGB(22, 24, 36)
+uIStroke1.Parent = main
+RegisterFade(uIStroke1)
+local text = Instance.new("TextLabel")
+text.Name = "Text"
+text.FontFace = Font.new(
+  "rbxassetid://12187365364",
+  Enum.FontWeight.Bold,
+  Enum.FontStyle.Normal
+)
+text.Text = "Tyrant Main"
+text.TextColor3 = Color3.fromRGB(97, 69, 255)
+text.TextSize = 21
+text.AnchorPoint = Vector2.new(0.5, 0)
+text.AutomaticSize = Enum.AutomaticSize.XY
+text.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+text.BackgroundTransparency = 1
+text.BorderColor3 = Color3.fromRGB(0, 0, 0)
+text.BorderSizePixel = 0
+text.Position = UDim2.new(0.5, 0, 0, 5)
+text.Size = UDim2.fromScale(0.128, 0.0857)
+text.Parent = main
+RegisterFade(text)
+local date = Instance.new("TextLabel")
+date.Name = "Date"
+date.FontFace = Font.new(
+  "rbxassetid://12187365364",
+  Enum.FontWeight.SemiBold,
+  Enum.FontStyle.Normal
+)
+date.Text = "Risk of Ban"
+date.TextColor3 = Color3.fromRGB(217, 17, 87)
+date.TextSize = 14
+date.AnchorPoint = Vector2.new(0.5, 1)
+date.AutomaticSize = Enum.AutomaticSize.XY
+date.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+date.BackgroundTransparency = 1
+date.BorderColor3 = Color3.fromRGB(0, 0, 0)
+date.BorderSizePixel = 0
+date.Position = UDim2.new(0.5, 0, 1, -5)
+date.Parent = main
+RegisterFade(date)
+local uIListLayout = Instance.new("UIListLayout")
+uIListLayout.Name = "UIListLayout"
+uIListLayout.Padding = UDim.new(0, 5)
+uIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+uIListLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+uIListLayout.Parent = main
+
+main.Parent = theinnerframo
+
+local slim = Instance.new("TextButton")
+slim.Name = "Slim"
+slim.Text = ""
+slim.AutoButtonColor = false
+slim.Active = false
+slim.BackgroundColor3 = Color3.fromRGB(19, 21, 33)
+slim.BackgroundTransparency = 0.55
+slim.BorderColor3 = Color3.fromRGB(0, 0, 0)
+slim.BorderSizePixel = 0
+slim.Position = UDim2.new(0.529, 0, 0, 94)
+slim.Selectable = false
+slim.Size = UDim2.new(0.412, -12, 0, 70)
+
+local uICorner3 = Instance.new("UICorner")
+uICorner3.Name = "UICorner"
+uICorner3.Parent = slim
+
+local uIStroke2 = Instance.new("UIStroke")
+uIStroke2.Name = "UIStroke"
+uIStroke2.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+uIStroke2.Color = Color3.fromRGB(22, 24, 36)
+uIStroke2.Parent = slim
+RegisterFade(uIStroke2)
+local text1 = Instance.new("TextLabel")
+text1.Name = "Text"
+text1.FontFace = Font.new(
+  "rbxassetid://12187365364",
+  Enum.FontWeight.Bold,
+  Enum.FontStyle.Normal
+)
+text1.Text = "Tyrant Slim"
+text1.TextColor3 = Color3.fromRGB(97, 69, 255)
+text1.TextSize = 21
+text1.AnchorPoint = Vector2.new(0.5, 0)
+text1.AutomaticSize = Enum.AutomaticSize.XY
+text1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+text1.BackgroundTransparency = 1
+text1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+text1.BorderSizePixel = 0
+text1.Position = UDim2.new(0.5, 0, 0, 5)
+text1.Size = UDim2.fromScale(0.128, 0.0857)
+text1.Parent = slim
+RegisterFade(text1)
+local date1 = Instance.new("TextLabel")
+date1.Name = "Date"
+date1.FontFace = Font.new(
+  "rbxassetid://12187365364",
+  Enum.FontWeight.SemiBold,
+  Enum.FontStyle.Normal
+)
+date1.Text = "Undetected"
+date1.TextColor3 = Color3.fromRGB(69, 247, 104)
+date1.TextSize = 14
+date1.AnchorPoint = Vector2.new(0.5, 1)
+date1.AutomaticSize = Enum.AutomaticSize.XY
+date1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+date1.BackgroundTransparency = 1
+date1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+date1.BorderSizePixel = 0
+date1.Position = UDim2.new(0.5, 0, 1, -5)
+date1.Parent = slim
+RegisterFade(date1)
+local uIListLayout1 = Instance.new("UIListLayout")
+uIListLayout1.Name = "UIListLayout"
+uIListLayout1.Padding = UDim.new(0, 5)
+uIListLayout1.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uIListLayout1.SortOrder = Enum.SortOrder.LayoutOrder
+uIListLayout1.VerticalAlignment = Enum.VerticalAlignment.Center
+uIListLayout1.Parent = slim
+
+slim.Parent = theinnerframo
+RegisterFade(slim)
+theinnerframo.Parent = loaderyranthub
+
+
+local function FadeOut()
+	TweenFade(1, 0.35)
+	task.delay(0.4, function()
+		ScreenGui:Destroy()
+	end)
+end
+
+SetFade(1)
+task.delay(0.05, function()
+	TweenFade(0, 0.45)
+end)
+
+main.MouseButton1Click:Connect(FadeOut)
+slim.MouseButton1Click:Connect(FadeOut)
+
+main.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua"))()
+end)
+
+slim.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b5eb5ab4e62fa3229a5dfb089cf220af.lua"))()
+end)
