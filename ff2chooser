@@ -236,7 +236,7 @@ date.FontFace = Font.new(
   Enum.FontStyle.Normal
 )
 date.Text = "Undetected"
-date.TextColor3 = Color3.fromRGB(217, 17, 87)
+date.TextColor3 = Color3.fromRGB(69, 247, 104)
 date.TextSize = 14
 date.AnchorPoint = Vector2.new(0.5, 1)
 date.AutomaticSize = Enum.AutomaticSize.XY
