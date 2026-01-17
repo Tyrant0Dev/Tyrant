@@ -235,7 +235,7 @@ date.FontFace = Font.new(
   Enum.FontWeight.SemiBold,
   Enum.FontStyle.Normal
 )
-date.Text = "Risk of Ban"
+date.Text = "Undetected"
 date.TextColor3 = Color3.fromRGB(217, 17, 87)
 date.TextSize = 14
 date.AnchorPoint = Vector2.new(0.5, 1)
