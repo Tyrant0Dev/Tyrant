@@ -1,4 +1,4 @@
-local XenoSupportedGame = game.GameId == 3150475059 or game.GameId == 4931927012
+local XenoSupportedGame = game.GameId == 9908641400 or game.GameId == 4931927012
 
 if (not hookfunction or not hookmetamethod) and not XenoSupportedGame then
     game:GetService("Players").LocalPlayer:Kick('Your executor is not supported')
@@ -10,7 +10,7 @@ if not script_key then
 	return
 end
 
-if game.GameId == 3150475059 then
+if game.GameId == 9908641400 then
      if hookfunction and hookmetamethod then
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/Tyrant0Dev/Tyrant/refs/heads/main/ff2chooser"))()
      else
