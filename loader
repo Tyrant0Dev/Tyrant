@@ -26,6 +26,8 @@ elseif game.GameId == 184199275 then
       loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e2a1945ebb123c7dc6bd8d2f8a1ac197.lua"))() -- Universe Football
 elseif game.GameId == 8558141897 then
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/be946f3085309de0311937a890a78f95.lua"))() -- Flag Football
+elseif game.GameId == 4293374620 then
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2f2982eb5b768630d2a72a1c331911b7.lua"))() -- Fifa Super Soccer
 else
      game:GetService("Players").LocalPlayer:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
 end
