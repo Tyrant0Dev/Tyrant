@@ -1,0 +1,19 @@
+local XenoSupportedGame = game.GameId == 9908641400 or game.GameId == 4931927012
+
+if (not hookfunction or not hookmetamethod) and not XenoSupportedGame then
+    game:GetService("Players").LocalPlayer:Kick('Your executor is not supported')
+    return
+end
+
+if not script_key then
+	game:GetService("Players").LocalPlayer:Kick("Tyrant Free | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
+	return
+end
+
+if game.GameId == 6931042565 then
+     loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/423061d479bf7d89505e46a4f003ea5e.lua"))() -- Volleyball Legends
+elseif game.GameId == 4293374620 then
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/bb3dd66f6bb451af6021733d40686d18.lua"))() -- Fifa Super Soccer
+else
+     game:GetService("Players").LocalPlayer:Kick("Tyrant Free | Game currently unsupported. Check the Supported-Games Channel for supported games.")
+end
