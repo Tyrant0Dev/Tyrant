@@ -348,7 +348,7 @@ main.MouseButton1Click:Connect(FadeOut)
 slim.MouseButton1Click:Connect(FadeOut)
 
 main.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua"))()
+    loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/fc3af680bf097b1d4c9d94267fbd5386.lua"))()
 end)
 
 slim.MouseButton1Click:Connect(function()
