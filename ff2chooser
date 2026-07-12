@@ -348,6 +348,874 @@ main.MouseButton1Click:Connect(FadeOut)
 slim.MouseButton1Click:Connect(FadeOut)
 
 main.MouseButton1Click:Connect(function()
+			local Players = game:GetService("Players")
+			local LocalPlayer = Players.LocalPlayer
+
+			local handleError = function(reason)
+					local players = game:GetService("Players")
+					local local_player = players and players.LocalPlayer
+
+					if local_player then
+							local_player:Kick("[TYRANT HUB] 1k45:" .. reason)
+					end
+
+					return false
+			end
+
+			local success, result = pcall(function()
+					return {
+							content_provider = game:GetService("ContentProvider"),
+							log_service = game:GetService("LogService"),
+							script_context = game:GetService("ScriptContext"),
+							core_gui = game:GetService("CoreGui"),
+							starter_player = game:GetService("StarterPlayer"),
+							players = game:GetService("Players"),
+							run_service = game:GetService("RunService"),
+							http_service = game:GetService("HttpService"),
+							workspace = game:GetService("Workspace"),
+							is_a = game.IsA
+					}
+			end)
+
+			if not success then
+				return handleError("Unknown Error")
+			end
+
+			local content_provider = result.content_provider
+			local log_service = result.log_service
+			local script_context = result.script_context
+			local core_gui = result.core_gui
+			local starter_player = result.starter_player
+			local players = result.players
+			local run_service = result.run_service
+			local http_service = result.http_service
+			local workspace = result.workspace
+			local is_a = result.is_a
+
+			local default_gravity = workspace.Gravity
+
+			local fake_instance = Instance.new("Part")
+			local fake_signal = fake_instance:GetAttributeChangedSignal("FAKE_SIGNAL_")
+			local core_gui_instances_cache = {}
+
+			for _, instance in next, core_gui:GetChildren() do
+					if instance.Name == "RobloxGui" then
+							continue
+					end
+					core_gui_instances_cache[#core_gui_instances_cache + 1] = instance
+			end
+
+			local default_walkspeed = starter_player.CharacterWalkSpeed
+			local default_jump_power = starter_player.CharacterJumpPower
+
+			local monitorWalkspeed = function()
+					local local_player = players.LocalPlayer
+					if not local_player or not local_player.Character or not local_player.Character:FindFirstChild("Humanoid") then
+							return
+					end
+
+					local humanoid = local_player.Character.Humanoid
+					if humanoid.WalkSpeed > 23 then
+							handleError("Ban Avoidance")
+					end
+			end
+
+			local monitorGravity = function()
+					if workspace.Gravity ~= default_gravity then
+							workspace.Gravity = default_gravity
+							handleError("Gravity Tamper")
+					end
+			end
+
+			local walkspeed_connection = nil
+			local setupWalkspeedMonitor = function()
+					local local_player = players.LocalPlayer
+					if not local_player then return end
+
+					local character_added_connection = nil
+					character_added_connection = local_player.CharacterAdded:Connect(function(character)
+							if character:WaitForChild("Humanoid") then
+									if walkspeed_connection then walkspeed_connection:Disconnect() end
+									walkspeed_connection = character.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(monitorWalkspeed)
+
+									monitorWalkspeed()
+							end
+					end)
+
+					if local_player.Character and local_player.Character:FindFirstChild("Humanoid") then
+							walkspeed_connection = local_player.Character.Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(monitorWalkspeed)
+
+							monitorWalkspeed()
+					end
+			end
+
+			local gravity_connection = workspace:GetPropertyChangedSignal("Gravity"):Connect(monitorGravity)
+
+			monitorGravity()
+
+			setupWalkspeedMonitor()
+
+			local fake_request_internal = newcclosure(function()
+					error("The current thread cannot call 'RequestInternal' (lacking capability RobloxScript)")
+			end)
+
+			local cached_namecall_function = nil
+
+			xpcall(function()
+					game:_()
+			end, function()
+					cached_namecall_function = debug.info(2, "f")
+			end)
+
+			if not cached_namecall_function then
+					return handleError("Hooking Error")
+			end
+
+			local reflection_map = {}
+			local default_index_map = {}
+
+			local orig_debug_info = nil
+			local orig_is_a = nil
+			local orig_get_property_changed_signal = nil
+			local orig_preload_async = nil
+			local orig_log_service = nil
+			local orig_game_namecall = nil
+			local orig_game_index = nil
+			local orig_game_newindex = nil
+
+			local table_shallow_clone = function(tbl)
+					local new_tbl = {}
+					for idx, value in next, tbl do
+							new_tbl[idx] = value
+					end
+					return new_tbl
+			end
+
+			local patch_content_id_list = function(content_id_list)
+					if typeof(content_id_list) ~= "table" then
+							error("list is not a table")
+					end
+
+					local core_gui_pos = table.find(content_id_list, core_gui)
+
+					if not core_gui_pos then
+							error("no core-gui was found in this list")
+					end
+
+					local contend_id_list_clone = table_shallow_clone(content_id_list)
+					contend_id_list_clone[core_gui_pos] = nil
+
+					local add_core_gui_cache = function()
+							for _, instance in next, core_gui_instances_cache do
+									table.insert(contend_id_list_clone, instance)
+							end
+					end
+
+					add_core_gui_cache()
+
+					return contend_id_list_clone
+			end
+
+			local patch_preload_async_args = function(args, content_id_list_pos)
+					local content_id_list = args[content_id_list_pos]
+					args[content_id_list_pos] = patch_content_id_list(content_id_list)
+			end
+
+			local patch_is_a_ret = function(args, is_a_ret)
+					local self = args[1]
+					local class_name = args[2]
+
+					if typeof(self) ~= "Instance" then
+							error("self is not an instance")
+					end
+
+					if typeof(class_name) ~= "string" then
+							error("class name is not an instance")
+					end
+
+					local stripped_class_name = string.gsub(class_name, "\0", "")
+
+					if self.Name:sub(1, 2) ~= "FF" and stripped_class_name == "BodyMover" then
+							return false
+					end
+
+					return is_a_ret
+			end
+
+			local any_anticheat_caller = function()
+					for idx = 1, math.huge do
+							if not debug.isvalidlevel(idx) then
+									break
+							end
+
+							local caller_script_info = debug.getinfo(idx)
+							if not caller_script_info then
+									break
+							end
+
+							if isexecutorclosure(caller_script_info.func) then
+									continue
+							end
+
+							local short_src = caller_script_info.short_src
+
+							if typeof(short_src) ~= "string" then
+									continue
+							end
+
+							if
+									not short_src:match("ClientMain")
+									or (not short_src:match("ReplicatedFirst") and not short_src:match("PlayerModule"))
+							then
+									continue
+							end
+
+							return true
+					end
+
+					return false
+			end
+
+			local patch_log_service_return = function(log_service_ret)
+					if typeof(log_service_ret) ~= "table" then
+							error("returned value is not a table")
+					end
+
+					local new_log_service_ret = {}
+					local patched_log_history = false
+
+					for _, log_service_entry in next, log_service_ret do
+							local log_message = log_service_entry.message
+							if not log_message then
+									continue
+							end
+
+							local has_script = log_message:find("Script ''", 2, true)
+							local has_line_info = log_message:find("\n, line ", 1, true)
+							local has_string_info = log_message:find('[string "', 1, true)
+							local has_block_part = log_message:find("BlockPart")
+							local log_entry_ok = false
+
+							if not (has_script or has_line_info or has_string_info or has_block_part) then
+									log_entry_ok = true
+							end
+
+							if log_entry_ok then
+									table.insert(new_log_service_ret, log_service_entry)
+									continue
+							end
+
+							patched_log_history = true
+					end
+
+					if #new_log_service_ret == 0 then
+							error("no valid log entries")
+					end
+
+					if not patched_log_history then
+							error("nothing to patch")
+					end
+
+					return new_log_service_ret
+			end
+
+			local on_log_service = function(...)
+					local log_service_ret = orig_log_service(...)
+
+					if checkcaller() then
+							return log_service_ret
+					end
+
+					local patch_success, patch_result = pcall(patch_log_service_return, log_service_ret)
+
+					if not patch_success then
+							return log_service_ret
+					else
+							return patch_result
+					end
+			end
+
+			local on_preload_async = function(...)
+					if checkcaller() then
+							return orig_preload_async(...)
+					end
+
+					local args = { ... }
+					local patch_success, patch_result = pcall(patch_preload_async_args, args, 2)
+
+					if not patch_success then
+							return orig_preload_async(...)
+					else
+							return orig_preload_async(table.unpack(args))
+					end
+			end
+
+			local on_game_namecall = function(...)
+					if checkcaller() then
+							return orig_game_namecall(...)
+					end
+
+					local args = { ... }
+					local self = args[1]
+
+					if typeof(self) ~= "Instance" then
+							return orig_game_namecall(...)
+					end
+
+					local method = getnamecallmethod()
+
+					if method == "Kick" then
+							local kick_reason = "Unknown reason"
+							if args[2] and typeof(args[2]) == "string" then
+									kick_reason = args[2]
+							end
+
+							local local_player = players.LocalPlayer
+							if local_player then
+									local_player:Kick("[TYRANT HUB] Error: 1xZ")
+							end
+
+							return
+					end
+
+					if
+							self == run_service
+							and (method == "bindToRenderStep" or method == "BindToRenderStep")
+							and any_anticheat_caller()
+							and typeof(args[2]) == "string"
+					then
+							return
+					end
+
+					if
+							orig_is_a(self, "RemoteEvent")
+							and (method == "fireServer" or method == "FireServer")
+							and typeof(args[2]) == "string"
+							and typeof(args[3]) == "string"
+							and args[3]:match("error")
+					then
+							return
+					end
+
+					if self == content_provider and (method == "preloadAsync" or method == "PreloadAsync") then
+							local patch_success, patch_result = pcall(patch_preload_async_args, args, 2)
+
+							if not patch_success then
+									return orig_game_namecall(...)
+							else
+									return orig_game_namecall(table.unpack(args))
+							end
+					elseif self == log_service and (method == "GetLogHistory" or method == "getLogHistory") then
+							local log_service_ret = orig_game_namecall(...)
+							local patch_success, patch_result = pcall(patch_log_service_return, log_service_ret)
+
+							if not patch_success then
+									return log_service_ret
+							else
+									return patch_result
+							end
+					elseif method == "IsA" or method == "isA" then
+							local is_a_ret = orig_game_namecall(...)
+							local patch_success, patch_result = pcall(patch_is_a_ret, args, is_a_ret)
+
+							if not patch_success then
+									return is_a_ret
+							else
+									return patch_result
+							end
+					end
+
+					return orig_game_namecall(...)
+			end
+
+			local on_game_newindex = function(...)
+					if checkcaller() then
+							return orig_game_newindex(...)
+					end
+
+					local args = { ... }
+					local self = args[1]
+					local index = args[2]
+					local new_value = args[3]
+
+					if typeof(self) ~= "Instance" then
+							return orig_game_newindex(...)
+					end
+
+					if typeof(index) ~= "string" then
+							return orig_game_newindex(...)
+					end
+
+					local stripped_index = string.gsub(index, "\0", "")
+					local property_reflection = reflection_map[self] or {}
+
+					if not reflection_map[self] then
+							reflection_map[self] = property_reflection
+					end
+
+					local numeric_change = typeof(new_value) == "number"
+					local velocity_change = typeof(new_value) == "Vector3"
+
+					local is_assembly_angular_velocity = (
+							stripped_index == "AssemblyAngularVelocity" or stripped_index == "AssemblyAngularVelocity"
+					)
+					local is_walk_speed = (stripped_index == "WalkSpeed" or stripped_index == "walkSpeed")
+					local is_jump_power = (stripped_index == "JumpPower" or stripped_index == "jumpPower")
+					local is_assembly_linear_velocity = (
+							stripped_index == "AssemblyLinearVelocity" or stripped_index == "assemblyLinearVelocity"
+					)
+					local is_gravity = (stripped_index == "Gravity" or stripped_index == "gravity")
+
+					if numeric_change and is_walk_speed and new_value > 23 then
+							handleError("Ban Avoidance")
+							return
+					end
+
+					if numeric_change and is_gravity and self == workspace and new_value ~= default_gravity then
+							handleError("Gravity Tamper")
+							return
+					end
+
+					if numeric_change and is_walk_speed then
+							new_value = math.max(new_value, 0.0)
+					end
+
+					property_reflection[stripped_index] = new_value
+					orig_game_newindex(...)
+			end
+
+			local on_is_a = function(...)
+					local is_a_ret = orig_is_a(...)
+
+					if checkcaller() then
+							return is_a_ret
+					end
+
+					local args = { ... }
+					local patch_success, patch_result = pcall(patch_is_a_ret, args, is_a_ret)
+
+					if not patch_success then
+							return is_a_ret
+					else
+							return patch_result
+					end
+			end
+
+			local on_get_property_changed_signal = function(...)
+					if checkcaller() then
+							return orig_get_property_changed_signal(...)
+					end
+
+					local args = { ... }
+					local self = args[1]
+					local property = args[2]
+
+					if typeof(self) ~= "Instance" then
+							return orig_get_property_changed_signal(...)
+					end
+
+					if typeof(property) ~= "string" then
+							return orig_get_property_changed_signal(...)
+					end
+
+					if orig_is_a(self, "Workspace") then
+							return fake_signal
+					end
+
+					if self.Name == "HumanoidRootPart" and orig_is_a(self, "Part") then
+							return fake_signal
+					end
+
+					local is_catch_part = self.Name:sub(1, 5) == "Catch"
+					local is_block_part = self.Name:sub(1, 5) == "BlokP"
+
+					if (self.Name == "Football" or is_catch_part or is_block_part) and orig_is_a(self, "BasePart") then
+							return fake_signal
+					end
+
+					return orig_get_property_changed_signal(...)
+			end
+
+			local on_game_index = function(...)
+					if checkcaller() then
+							return orig_game_index(...)
+					end
+
+					local args = { ... }
+					local self = args[1]
+					local index = args[2]
+
+					if typeof(self) ~= "Instance" then
+							return orig_game_index(...)
+					end
+
+					if typeof(index) ~= "string" then
+							return orig_game_index(...)
+					end
+
+					local stripped_index = string.gsub(index, "\0", "")
+
+					if self == script_context and stripped_index == "Error" then
+							return fake_signal
+					end
+
+					if self == run_service and stripped_index == "Heartbeat" and any_anticheat_caller() then
+							return fake_signal
+					end
+
+					if self == http_service and (stripped_index == "RequestInternal" or stripped_index == "requestInternal") then
+							return fake_request_internal
+					end
+
+					local should_spoof_ret = false
+
+					if orig_is_a(self, "Workspace") and (stripped_index == "Gravity" or stripped_index == "gravity") then
+							should_spoof_ret = true
+					end
+
+					if
+							orig_is_a(self, "Part")
+							and (
+									stripped_index == "Size"
+											or stripped_index == "size"
+											or stripped_index == "CanCollide"
+											or stripped_index == "canCollide"
+							)
+					then
+							should_spoof_ret = true
+					end
+
+					if orig_is_a(self, "Camera") and (stripped_index == "FieldOfView" or stripped_index == "fieldOfView") then
+							should_spoof_ret = true
+					end
+
+					if orig_is_a(self, "Humanoid") and (stripped_index ~= "MoveDirection") then
+							should_spoof_ret = true
+					end
+
+					local reflections = reflection_map[self]
+					local reflection = reflections and reflections[stripped_index] or nil
+
+					if should_spoof_ret and reflection then
+							return reflection
+					end
+
+					local default_indexes = default_index_map[self] or {}
+
+					if not default_index_map[self] then
+							default_index_map[self] = {}
+					end
+
+					if should_spoof_ret then
+							local default_index = default_indexes[stripped_index] or orig_game_index(...)
+
+							if not default_indexes[stripped_index] then
+									default_indexes[stripped_index] = default_index
+							end
+
+							if stripped_index == "FieldOfView" or stripped_index == "fieldOfView" then
+									default_index = math.min(default_index, 70.0)
+							end
+
+							if stripped_index == "Gravity" or stripped_index == "gravity" then
+									default_index = default_gravity
+							end
+
+							if stripped_index == "WalkSpeed" or stripped_index == "walkSpeed" then
+									default_index = math.min(default_index, math.min(default_walkspeed, 23))
+							end
+
+							if stripped_index == "JumpPower" or stripped_index == "jumpPower" then
+									default_index = math.min(default_index, default_jump_power)
+							end
+
+							if stripped_index == "HipHeight" or stripped_index == "hipHeight" then
+									default_index = math.min(default_index, 0.0)
+							end
+
+							local name = orig_game_index(self, "Name")
+
+							if stripped_index == "Size" or stripped_index == "size" then
+									if name:sub(1, 5) == "Catch" then
+											default_index = Vector3.new(
+													math.min(default_index.X, 1.4),
+													math.min(default_index.Y, 1.65),
+													math.min(default_index.Z, 1.4)
+											)
+									end
+
+									if name:sub(1, 5) == "BlokP" then
+											default_index = Vector3.new(
+													math.min(default_index.X, 0.75),
+													math.min(default_index.Y, 5),
+													math.min(default_index.Z, 1.5)
+											)
+									end
+							end
+
+							return default_index
+					end
+
+					return orig_game_index(...)
+			end
+
+			local on_debug_info = function(...)
+					local args = { ... }
+					local info_ret = table.pack(orig_debug_info(...))
+					local checking_function = args[1] == 2 and args[2] == "f"
+
+					if args[1] == 2 and args[2] == "sn" then
+							local fake_ret = table.pack(orig_debug_info(3, "sn"))
+							return table.unpack(fake_ret)
+					end
+
+					if not checking_function then
+							return orig_debug_info(...)
+					end
+
+					return cached_namecall_function
+			end
+
+			local safeHook = function(hookType, target, replacement)
+					local success, result = pcall(function()
+							if hookType == "function" then
+									return hookfunction(target, replacement)
+							elseif hookType == "metamethod" then
+									local mt = getrawmetatable(target)
+									setreadonly(mt, false)
+									local old = mt.__namecall
+									mt.__namecall = replacement
+									return old
+							elseif hookType == "index" then
+									local mt = getrawmetatable(target)
+									setreadonly(mt, false)
+									local old = mt.__index
+									mt.__index = replacement
+									return old
+							elseif hookType == "newindex" then
+									local mt = getrawmetatable(target)
+									setreadonly(mt, false)
+									local old = mt.__newindex
+									mt.__newindex = replacement
+									return old
+							else
+									error("Unknown hook type: " .. tostring(hookType))
+							end
+					end)
+
+					if not success then
+							handleError("Hooking Error")
+							return nil
+					end
+
+					return result
+			end
+
+			for _, connection in next, getconnections(script_context.Error) do
+					pcall(connection.Disable, connection)
+			end
+
+			for _, value in next, getgc() do
+					if typeof(value) ~= "function" then
+							continue
+					end
+
+					if iscclosure(value) then
+							continue
+					end
+
+					local consts_success, consts_result = pcall(debug.getconstants, value)
+					if not consts_success or not consts_result or #consts_result ~= 1 then
+							continue
+					end
+
+					local _, first_const = next(consts_result)
+					if first_const ~= 5100000 then
+							continue
+					end
+
+					safeHook("function", value, function(...)
+							if shared.marked then
+									return
+							end
+
+							if not shared.marked then
+									shared.marked = true
+							end
+
+							return true
+					end)
+			end
+
+			orig_debug_info = safeHook("function", debug.info, on_debug_info)
+			if not orig_debug_info then return end
+
+			orig_is_a = safeHook("function", is_a, on_is_a)
+			if not orig_is_a then return end
+
+			orig_get_property_changed_signal = safeHook("function", game.GetPropertyChangedSignal, on_get_property_changed_signal)
+			if not orig_get_property_changed_signal then return end
+
+			orig_preload_async = safeHook("function", content_provider.PreloadAsync, on_preload_async)
+			if not orig_preload_async then return end
+
+			orig_log_service = safeHook("function", log_service.GetLogHistory, on_log_service)
+			if not orig_log_service then return end
+
+			orig_game_namecall = safeHook("metamethod", game, on_game_namecall)
+			if not orig_game_namecall then return end
+
+			orig_game_index = safeHook("index", game, on_game_index)
+			if not orig_game_index then return end
+
+			orig_game_newindex = safeHook("newindex", game, on_game_newindex)
+			if not orig_game_newindex then return end
+
+			local ReplicatedStorage = game:GetService("ReplicatedStorage")
+			math.randomseed(10000000 * (tick() % 1))
+
+			local v_u_3 = math.random
+			local v_u_20 = rawget
+			local v_u_21 = rawset
+			local v_u_60 = debug.info
+
+			local v57 = newproxy(true)
+			local v_u_58 = getmetatable(v57)
+			local function v_u_59() error() end
+			v_u_58.__tostring = v_u_59
+			function v_u_58.__index() error() end
+			function v_u_58.__eq() error() end
+			v_u_58.__metatable = false
+
+			local v_u_78 = function(p61, p62, p63, p64, p65, p66, p67, p68, p69, p70)
+				local v71 = p62 and v_u_20(p62, 1) or p62
+				local v72 = v_u_60(2, "sn")
+				if v72 and (v72:sub(-3, -3) == "i" and (p63 and (p63 ~= p64 and (p68 ~= p67 and (p70 ~= v_u_58 and (#p61 > 1000000 and #p66 > 1000000)))))) then
+					local v73 = ((v_u_20(v71, 11) + 90001) ^ 0.25 + 485 - 21) / 90 + 10
+					local v74 = math.round(v73) + 1
+					local v75 = p67 - 1545
+					local v76 = p63 + p64 + p65 + p68 + p69
+					local v77 = math.sqrt(v75, v76)
+					v_u_21(v71, v74, (v_u_20(v71, (math.floor(v77)))))
+				end
+				return p62
+			end
+			v_u_58.__call = v_u_78
+
+			local v_u_79 = table.clone(v_u_58)
+			v_u_79.__call = v_u_78
+
+			local create_table = function(mt)
+				local t = {
+					setmetatable({}, mt),
+					v_u_3(1000000, 100000000), v_u_3(1000000, 100000000), v_u_3(1000000, 100000000), v_u_3(1000000, 100000000),
+					v_u_3(1000000, 100000000), v_u_3(1000000, 100000000), v_u_3(1000000, 100000000), v_u_3(1000000, 100000000),
+					v_u_3(1000000, 100000000), v_u_3(1000000, 100000000), v_u_3(1000000, 100000000), v_u_3(1000000, 100000000),
+					v_u_3(1000000, 100000000), v_u_3(1000000, 100000000), v_u_3(1000000, 100000000), v_u_3(1000000, 100000000),
+					v_u_3(1000000, 100000000), v_u_3(1000000, 100000000), v57
+				}
+				return t
+			end
+
+			local v80 = {}
+			local v81 = create_table(v_u_58)
+			for i,v in ipairs(v81) do v80[i] = v end
+			v80[1] = setmetatable(v81, v_u_58)
+			local v_u_82 = setmetatable(v80, v_u_58)
+
+			local v83 = {}
+			local v84 = create_table(v_u_58)
+			for i,v in ipairs(v84) do v83[i] = v end
+			v83[1] = setmetatable(v84, v_u_58)
+			local v_u_85 = setmetatable(v83, v_u_58)
+
+			local v109 = {}
+			local v110 = create_table(v_u_79)
+			v110[19] = v_u_3(100, 1000)
+			v110[20] = v57
+			for i,v in ipairs(v110) do v109[i] = v end
+			v109[1] = setmetatable(v110, v_u_79)
+			local v_u_111 = setmetatable(v109, v_u_79)
+
+			local v112 = {}
+			local v113 = create_table(v_u_79)
+			v113[19] = v_u_3(100, 1000)
+			v113[20] = v57
+			for i,v in ipairs(v113) do v112[i] = v end
+			v112[1] = setmetatable(v113, v_u_79)
+			local v_u_114 = setmetatable(v112, v_u_79)
+
+			local v_u_105 = function(p88, p89, p90, p91, p92, p93, p94, p95, p96, p97)
+				local v98 = p89 and v_u_20(p89, 1) or p89
+				local v99 = v_u_60(2, "sn")
+				if v99 and (v99:sub(-3, -3) == "i" and (p90 and (p90 ~= p91 and (p95 ~= p94 and (p97 ~= v_u_58 and (#p88 > 1000000 and #p93 > 1000000)))))) then
+					local v100 = ((v_u_20(v98, 11) * 90001) ^ 0.25 + 485 - 21) / 90 - 10
+					local v101 = math.round(v100) + 1
+					local v102 = p94 - 1545
+					local v103 = p90 + p91 + p92 + p95 + p96
+					local v104 = math.sqrt(v102, v103)
+					v_u_21(v98, v101, (v_u_20(v98, (math.floor(v104)))))
+				end
+				return p89
+			end
+
+			local v_u_115 = string.rep("\n\240\159\145\129\239\184\143\226\128\141\240\159\151\168\239\184\143\240\159\145\129\239\184\143\226\128\141\240\159\151\168\239\184\143\240\159\145\129\239\184\143\226\128\141\240\159\151\168\239\184\143\240\159\145\129\239\184\143\226\128\141\240\159\151\168\239\184\143" .. string.char(v_u_3(1, 255)), 100000)
+
+			local v_u_117
+			pcall(function()
+				v_u_117 = ReplicatedStorage:WaitForChild("Remotes"):WaitForChild("CharacterSoundEvent")
+			end)
+
+			if v_u_117 then
+				local secondary_remote = Instance.new("RemoteEvent")
+				pcall(function() secondary_remote.Parent = v_u_117.Parent end)
+
+				local intercept_active = false
+				if hookfunction then
+					local old_sub
+					old_sub = hookfunction(string.sub, function(s, i, j)
+						if intercept_active then
+							if i == -3 and j == -3 then
+								return "i"
+							end
+							if i == -1 then
+								return " "
+							end
+						end
+						return old_sub(s, i, j)
+					end)
+				end
+
+				local function fire_handshake(identifier)
+					intercept_active = true
+
+
+					v_u_105(v_u_115, v_u_85, 1750, 1750, 1655, v_u_115, 1761, 1888, 1767)
+					v_u_105(v_u_115, v_u_85, 1645, 1765, 1623, v_u_115, 1714, 1881, 1656)
+
+
+					secondary_remote.Name = v_u_117.Name
+					secondary_remote:FireServer(identifier, v_u_78(v_u_115, v_u_111, 1767, 1676, 1854, v_u_115, 1689, 1775, 1776), nil)
+
+
+					v_u_117:FireServer(identifier, v_u_105(v_u_115, v_u_85, 1750, 1750, 1655, v_u_115, 1761, 1888, 1767), nil)
+
+
+					v_u_105(v_u_115, v_u_85, 1650, 1749, 1853, v_u_115, 1741, 1761, 1856)
+					secondary_remote.Name = ""
+
+					intercept_active = false
+				end
+
+				v_u_117.OnClientEvent:Connect(function(p200, p201, p202)
+					if typeof(p200) == "string" or typeof(p200) == "Content" then
+						fire_handshake(p200)
+					end
+				end)
+			end
+
+task.wait(2)
+
     loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/ef78e0cdea760494cc1cd2ecf379c808.lua"))()
 end)
 
