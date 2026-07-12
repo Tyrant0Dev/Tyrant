@@ -34,6 +34,8 @@ elseif game.GameId == 7884563721 then
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/782530fac3614d00ba480435428dab37.lua"))() -- Arcade Basketball
 elseif game.GameId == 10200395747 then
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/7b5e833351562f0bb1f5db7a772e165e.lua"))() -- Grow A Garden 2
+elseif game.GameId == 7128251171 then
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5d3df71807650d626ae834af436579ab.lua"))() -- Superstar Baseball
 else
      game:GetService("Players").LocalPlayer:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
 end
