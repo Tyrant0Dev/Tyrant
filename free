@@ -1,100 +1,19 @@
-LP_CUSTOM_LOADER = function(stepOrTime)
-	local player = game:GetService("Players").LocalPlayer
-	local tweenService = game:GetService("TweenService")
 
-	local function getGui()
-		local gui = player.PlayerGui:FindFirstChild("TyrantHubLoader")
-		if gui then return gui end
+--[[
 
-		gui = Instance.new("ScreenGui")
-		gui.Name = "TyrantHubLoader"
-		gui.ResetOnSpawn = false
-		gui.DisplayOrder = 999
-		gui.Parent = player.PlayerGui
+You can upload this file on your github, pastebin, anywhere you want and generate a loadstring.
+    
+Add 'lp_key' variable if your user has a key on top of this loader.
 
-		local container = Instance.new("Frame")
-		container.Name = "Container"
-		container.Size = UDim2.new(0, 320, 0, 48)
-		container.Position = UDim2.new(0.5, -160, 1, -36)
-		container.BackgroundColor3 = Color3.fromRGB(18, 18, 22)
-		container.BackgroundTransparency = 0.15
-		container.BorderSizePixel = 0
-		container.Parent = gui
+You can remove this message block as you like.
 
-		local corner = Instance.new("UICorner")
-		corner.CornerRadius = UDim.new(0, 8)
-		corner.Parent = container
 
-		local stroke = Instance.new("UIStroke")
-		stroke.Color = Color3.fromRGB(45, 45, 55)
-		stroke.Thickness = 1
-		stroke.Transparency = 0.5
-		stroke.Parent = container
+ _                ____            _   
+| |   _   _  __ _|  _ \ _ __ ___ | |_ 
+| |  | | | |/ _` | |_) | '__/ _ \| __|
+| |__| |_| | (_| |  __/| | | (_) | |_ 
+|_____\__,_|\__,_|_|   |_|  \___/ \__|
+                                    
 
-		local status = Instance.new("TextLabel")
-		status.Name = "Status"
-		status.Size = UDim2.new(1, -20, 0, 20)
-		status.Position = UDim2.new(0, 10, 0, 6)
-		status.BackgroundTransparency = 1
-		status.Font = Enum.Font.GothamBold
-		status.TextSize = 13
-		status.TextColor3 = Color3.fromRGB(235, 235, 240)
-		status.TextXAlignment = Enum.TextXAlignment.Left
-		status.Text = ""
-		status.Parent = container
-
-		local sub = Instance.new("TextLabel")
-		sub.Name = "Sub"
-		sub.Size = UDim2.new(1, -20, 0, 14)
-		sub.Position = UDim2.new(0, 10, 0, 26)
-		sub.BackgroundTransparency = 1
-		sub.Font = Enum.Font.Gotham
-		sub.TextSize = 10
-		sub.TextColor3 = Color3.fromRGB(120, 120, 135)
-		sub.TextXAlignment = Enum.TextXAlignment.Left
-		sub.Text = "Tyrant Hub"
-		sub.Parent = container
-
-		container.BackgroundTransparency = 1
-		status.TextTransparency = 1
-		sub.TextTransparency = 1
-		stroke.Transparency = 1
-
-		tweenService:Create(container, TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {BackgroundTransparency = 0.15}):Play()
-		tweenService:Create(status, TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-		tweenService:Create(sub, TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {TextTransparency = 0}):Play()
-		tweenService:Create(stroke, TweenInfo.new(0.35, Enum.EasingStyle.Quint, Enum.EasingDirection.Out), {Transparency = 0.5}):Play()
-
-		return gui
-	end
-
-	local gui = getGui()
-	local container = gui.Container
-	local status = container.Status
-	local sub = container.Sub
-
-	if stepOrTime == 1 then
-		status.Text = "Authenticating.."
-		sub.Text = "Tyrant Hub"
-	elseif stepOrTime == 2 then
-		status.Text = "Connecting to servers.."
-		sub.Text = "Tyrant Hub"
-	else
-		status.Text = "Authenticated in " .. stepOrTime .. "s"
-		sub.Text = "Tyrant Hub"
-
-		task.delay(2.5, function()
-			if not gui or not gui.Parent then return end
-			local fade = TweenInfo.new(0.4, Enum.EasingStyle.Quint, Enum.EasingDirection.Out)
-			tweenService:Create(container, fade, {BackgroundTransparency = 1}):Play()
-			tweenService:Create(status, fade, {TextTransparency = 1}):Play()
-			tweenService:Create(sub, fade, {TextTransparency = 1}):Play()
-			tweenService:Create(container:FindFirstChildOfClass("UIStroke"), fade, {Transparency = 1}):Play()
-			task.delay(0.45, function()
-				if gui and gui.Parent then gui:Destroy() end
-			end)
-		end)
-	end
-end
-
+]]--
 ("LuaProt V2 Loader - Unauthorized tampering or debugging of protected scripts is strictly prohibited and will result in a global blacklist from all LuaProt protected scripts."):sub(1,1);local f,c,v="92731539565251482386",http and http.request or request,function(h)while task.wait()do pcall(function()game:GetService"Players".LocalPlayer:Kick(h)local v=game:GetService"CoreGui".RobloxPromptGui.promptOverlay.ErrorPrompt;v.TitleFrame.ErrorTitle.Text="LuaProt"v.MessageArea.ErrorFrame.ErrorMessage.Text=h end)end end;lp_key=lp_key or"x"local b,o,h,k,d;o={"eu-1","eu-2","us-1"}h,k=pcall(c,{Url="https://eu-1.luaprot.net/api/v1/nodes/get"})if h and k and k.StatusCode==200 then pcall(function()d=game:GetService"HttpService":JSONDecode(k.Body)end)if d and d.success and d.node then for i,n in o do if n==d.node then table.insert(o,1,table.remove(o,i))break end end end end;for _,p in o do local r,y=os.clock()task.spawn(pcall,function()y=c{Url="https://"..p..".luaprot.net/api/v2/loader/get?key="..lp_key.."&scriptId="..f}end)repeat task.wait()until os.clock()-r>15 or y;if y and({[200]=1,[201]=1})[y.StatusCode]then LP_NODE=p;b=loadstring(y.Body)if b then break end end end;if b then b(LP_NODE)else v("V2 loader failed to load script. Report this and try again later!")end
