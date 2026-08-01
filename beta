@@ -1,21 +1,15 @@
-local XenoSupportedGame = game.GameId == 99086461400 or game.GameId == 49319247012
-
-if (not hookfunction or not hookmetamethod) and not XenoSupportedGame then
-    game:GetService("Players").LocalPlayer:Kick('Your executor is not supported')
+if (not hookfunction or not hookmetamethod) then
+    game:GetService("Players").LocalPlayer:Kick('[TYRANT HUB] Pls check supported-executors in our discord.')
     return
 end
 
-if not script_key then
-	game:GetService("Players").LocalPlayer:Kick("Tyrant | Please make sure you include the script_key part ABOVE the loadstring, otherwise Luarmor will not be able to recognize that you bought.")
+if not lp_key then
+	game:GetService("Players").LocalPlayer:Kick("[TYRANT HUB] Pls include lp_key part in your script.")
 	return
 end
 
 if game.GameId == 9908641400 then
-     if hookfunction and hookmetamethod then
-	loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/47f3c2e8fcd63e43af5f04f5c09b6c47.lua"))()
-     else
-	
-     end -- FF2
+	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b5eb5ab4e62fa3229a5dfb089cf220af.lua"))() -- Football Fusion 3
 elseif game.GameId == 4931927012 then
      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua"))() -- Basketball Legends
 elseif game.GameId == 6931042565 then
@@ -26,6 +20,18 @@ elseif game.GameId == 184199275 then
       loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e2a1945ebb123c7dc6bd8d2f8a1ac197.lua"))() -- Universe Football
 elseif game.GameId == 8558141897 then
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/be946f3085309de0311937a890a78f95.lua"))() -- Flag Football
+elseif game.GameId == 4293374620 then
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2f2982eb5b768630d2a72a1c331911b7.lua"))() -- Fifa Super Soccer
+elseif game.GameId == 7264587281 then
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/c4066713fd3060e96a3273b8966ee460.lua"))() -- Sniper Duels
+elseif game.GameId == 7884563721 then
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/782530fac3614d00ba480435428dab37.lua"))() -- Arcade Basketball
+elseif game.GameId == 10200395747 then
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/7b5e833351562f0bb1f5db7a772e165e.lua"))() -- Grow A Garden 2
+elseif game.GameId == 7128251171 then
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5d3df71807650d626ae834af436579ab.lua"))() -- Superstar Baseball
+elseif game.GameId == 7529591378 then
+	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/83bffc76b51718877df497f9125e55ed.lua"))() -- Practical Basketball
 else
      game:GetService("Players").LocalPlayer:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
 end
