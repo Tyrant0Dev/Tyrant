@@ -33,5 +33,5 @@ elseif game.GameId == 7128251171 then
 elseif game.GameId == 7529591378 then
 	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/83bffc76b51718877df497f9125e55ed.lua"))() -- Practical Basketball
 else
-     game:GetService("Players").LocalPlayer:Kick("Tyrant | Game currently unsupported. Check the Supported-Games Channel for supported games.")
+     game:GetService("Players").LocalPlayer:Kick("[TYRANT HUB] Game unsupported. Pls check supported-games channel in our discord.")
 end
