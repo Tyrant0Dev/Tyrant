@@ -11,7 +11,7 @@ end
 if game.GameId == 9908641400 then
 	loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/92731539565251482386"))() -- Football Fusion 3
 elseif game.GameId == 4931927012 then
-     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/bac6b27f68fb8bc67333e22590684414.lua"))() -- Basketball Legends
+     loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/57946543900567000702"))() -- Basketball Legends
 elseif game.GameId == 6931042565 then
      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b0bce84f55e1280b9332682da0514879.lua"))() -- Volleyball Legends
 elseif game.GameId == 3645347821 then
