@@ -9,27 +9,7 @@ if not lp_key then
 end
 
 if game.GameId == 9908641400 then
-	loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/92731539565251482386"))() -- Football Fusion 3
-elseif game.GameId == 4931927012 then
-     loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/57946543900567000702"))() -- Basketball Legends
-elseif game.GameId == 6931042565 then
-     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/b0bce84f55e1280b9332682da0514879.lua"))() -- Volleyball Legends
-elseif game.GameId == 3645347821 then
-     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/44522f2745666ad4fc2311604698c8e4.lua"))() -- BIG Paintball 2
-elseif game.GameId == 184199275 then
-      loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/e2a1945ebb123c7dc6bd8d2f8a1ac197.lua"))() -- Universe Football
-elseif game.GameId == 8558141897 then
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/be946f3085309de0311937a890a78f95.lua"))() -- Flag Football
-elseif game.GameId == 4293374620 then
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2f2982eb5b768630d2a72a1c331911b7.lua"))() -- Fifa Super Soccer
-elseif game.GameId == 7264587281 then
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/c4066713fd3060e96a3273b8966ee460.lua"))() -- Sniper Duels
-elseif game.GameId == 7884563721 then
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/782530fac3614d00ba480435428dab37.lua"))() -- Arcade Basketball
-elseif game.GameId == 10200395747 then
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/7b5e833351562f0bb1f5db7a772e165e.lua"))() -- Grow A Garden 2
-elseif game.GameId == 7128251171 then
-	  loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5d3df71807650d626ae834af436579ab.lua"))() -- Superstar Baseball
+	loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/92731639565251282366"))() -- Football Fusion 3
 elseif game.GameId == 7529591378 then
 	  loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))() -- Practical Basketball
 else
