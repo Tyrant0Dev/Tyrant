@@ -9,25 +9,25 @@ if not lp_key then
 end
 
 if game.GameId == 9908641400 then
-	loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))()
+	loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/92731539565251482386"))() -- Football Fusion 3
 elseif game.GameId == 4931927012 then
-     loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))() -- Basketball Legends
+     loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/57946543900567000702"))() -- Basketball Legends
 elseif game.GameId == 6931042565 then
-     loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))() -- Volleyball Legends
+     loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/53966816270282204689"))() -- Volleyball Legends
 elseif game.GameId == 184199275 then
-      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))() -- Universe Football
+      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/64323115733305714547"))() -- Universe Football
 elseif game.GameId == 8558141897 then
-      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))() -- Flag Football
+      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/18481508715060490551"))() -- Flag Football
 elseif game.GameId == 4293374620 then
-      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))() -- Fifa Super Soccer
+      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/78376011653068317075"))() -- Fifa Super Soccer
 elseif game.GameId == 7264587281 then
-      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))() -- Sniper Duels
+      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/61030811460728480773"))() -- Sniper Duels
 elseif game.GameId == 7884563721 then
-      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))() -- Arcade Basketball
+      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/08770171417291610133"))() -- Arcade Basketball
 elseif game.GameId == 10200395747 then
-      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))() -- Grow A Garden 2
+      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/66347052979256822829"))() -- Grow A Garden 2
 elseif game.GameId == 7128251171 then
-      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))() -- Superstar Baseball
+      loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/11394885593458368683"))() -- Superstar Baseball
 elseif game.GameId == 7529591378 then
       loadstring(game:HttpGet("https://luaprot.net/api/v2/loaders/get/01722713846205442094"))() -- Practical Basketball
 else
